@@ -65,7 +65,7 @@ addPerson.addEventListener('click', function(e) {
 
 
 
-//calculations
+//calculations 
 function calculate(){
     const percent = parseInt(inputTip.value); //turns our const into int -inputs are always str
     const tip = bill * percent / 100;
@@ -73,8 +73,6 @@ function calculate(){
     displayTip.innerHTML = tip
     displayTip.innerHTML = total
 };
-
-
 
 //test function in footer
 test.addEventListener('change', function(e) {
@@ -87,4 +85,16 @@ test.addEventListener('change', function(e) {
     value.innerHTML = value;
   }
   console.log(value);
+});
+
+//this bad boy updates our entire web page when you press enter. Thanks Ofir Farchy, and the internet for the help
+$(function() {
+    $("form input").keypress(function (e) {
+        if (e.keyCode && e.keyCode == 13) {
+            $('button[type=submit] .default').click();
+            return false;
+        } else {
+            return true;
+        }
+    });
 });
