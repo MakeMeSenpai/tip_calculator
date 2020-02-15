@@ -15,49 +15,64 @@ const test = document.getElementById('test')
 //javascript to html functions require eventListeners that will grab changed data (if valid input)
 inputBill.addEventListener('change', handleBill)
 function handleBill(e) {
-
-}
+    const value = inputBill.value;
+};
 
 //this only represents another way to make a function, however you should conform to one
 inputTip.addEventListener('change', function(e) {
-
-})
+    const value = inputTip.value;
+});
 
 // you can also add events this way: const string = document.getElementById('text-box').Eventlistener('click')
 inputPeople.addEventListener('change', function(e) {
-  
-})
+    const value = inputPeople.value;
+});
 
 
 
 //button fuctions
 addTip.addEventListener('click', function(e) {
+    const value = inputTip.value;
     // add 1 person ...
     // get the number of people from inputPeople.value
-    inputTip.value += 1
+    value += 1;
     // inputPeople.value = people + 1
-})
+});
 
 subtractTip.addEventListener('click', function(e) {
+    const value = inputTip.value;
     // remove 1 person ...
     // get the number of people from inputPeople.value
-    inputTip.value -= 1
+    value -= 1;
     // inputPeople.value = people - 1
-})
+});
 
 addPerson.addEventListener('click', function(e) {
+    const value = inputPeople.value;
     // add 1 person ...
     // get the number of people from inputPeople.value
-    inputPeople.value += 1
+    value += 1;
     // inputPeople.value = people + 1
-})
+});
 
 addPerson.addEventListener('click', function(e) {
+    const value = inputPeople.value;
     // add 1 person ...
     // get the number of people from inputPeople.value
-    inputPeople.value += 1
+    value += 1;
     // inputPeople.value = people + 1
-})
+});
+
+
+
+//calculations
+function calculate(){
+    const percent = parseInt(inputTip.value); //turns our const into int -inputs are always str
+    const tip = bill * percent / 100;
+    const total = bill + tip;
+    displayTip.innerHTML = tip
+    displayTip.innerHTML = total
+};
 
 
 
@@ -67,9 +82,9 @@ test.addEventListener('change', function(e) {
   const value = test.value
   if (value === "Hello") {
     //Setting the innerHTML of an element replaces everything between the tags with something new.
-    value.innerHTML = 'Hello Mitchell!'  
+    value.innerHTML = 'Hello Mitchell!'; 
   } else {
-    value.innerHTML = value
+    value.innerHTML = value;
   }
-  console.log(value)
-})
+  console.log(value);
+});
