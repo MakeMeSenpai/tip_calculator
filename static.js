@@ -1,4 +1,5 @@
 //Defines our id's into our javascript
+const form = document.querySelector('form')
 const inputBill = document.getElementById('input-bill')
 const inputTip = document.getElementById('input-tip')
 const addTip = document.getElementById('button-add-tip')
@@ -10,6 +11,12 @@ const displayTip = document.getElementById('display-tip')
 const displayTotal = document.getElementById('display-total')
 const test = document.getElementById('test')
 
+
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault()
+    calculate()
+})
 
 
 //javascript to html functions require eventListeners that will grab changed data (if valid input)
@@ -40,7 +47,7 @@ addTip.addEventListener('click', function(e) {
 });
 
 subtractTip.addEventListener('click', function(e) {
-    const value = inputTip.value;
+    let value = inputTip.value;
     // remove 1 person ...
     // get the number of people from inputPeople.value
     value -= 1;
@@ -48,7 +55,7 @@ subtractTip.addEventListener('click', function(e) {
 });
 
 addPerson.addEventListener('click', function(e) {
-    const value = inputPeople.value;
+    let value = inputPeople.value;
     // add 1 person ...
     // get the number of people from inputPeople.value
     value += 1;
@@ -56,22 +63,30 @@ addPerson.addEventListener('click', function(e) {
 });
 
 addPerson.addEventListener('click', function(e) {
-    const value = inputPeople.value;
+    let value = inputPeople.value;
     // add 1 person ...
     // get the number of people from inputPeople.value
     value += 1;
+    inputPeople.value = value
     // inputPeople.value = people + 1
 });
 
 
-
+// ADD IF STATEMENTS FOR PERSONS AND OTHER EVENTS -everythiing else works! maybe style
 //calculations 
 function calculate(){
     const percent = parseInt(inputTip.value); //turns our const into int -inputs are always str
-    const tip = bill * percent / 100;
+    const bill = parseInt(inputBill.value)
+    const tip = bill * (percent / 100);
     const total = bill + tip;
-    displayTip.innerHTML = tip
-    displayTip.innerHTML = total
+    // if value equals nothing, do nothing, else return value
+    if (tip == isNaN && total == isNaN){
+        displayTip = "$0"
+        displayTotal = "$0"
+    } else {
+        displayTip.innerHTML = "$" + tip
+        displayTotal.innerHTML = "$" + total
+    }    
 };
 
 //test function in footer
@@ -88,13 +103,13 @@ test.addEventListener('change', function(e) {
 });
 
 //this bad boy updates our entire web page when you press enter. Thanks Ofir Farchy, and the internet for the help
-$(function() {
-    $("form input").keypress(function (e) {
-        if (e.keyCode && e.keyCode == 13) {
-            $('button[type=submit] .default').click();
-            return false;
-        } else {
-            return true;
-        }
-    });
-});
+// $(function() {
+//     $("form input").keypress(function (e) {
+//         if (e.keyCode && e.keyCode == 13) {
+//             $('button[type=submit] .default').click();
+//             return false;
+//         } else {
+//             return true;
+//         }
+//     });
+// });
